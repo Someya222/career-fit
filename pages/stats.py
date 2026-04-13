@@ -135,7 +135,9 @@ with col_cm_controls:
     with col_cluster:
         st.markdown("<span style='font-size: 0.7rem; font-weight: 600; color: #94A3B8;'>CLUSTER: K=8</span>", unsafe_allow_html=True)
 
-st.image('models/confusion_matrix.png', use_container_width=True)
+_, col_cm_mid, _ = st.columns([1, 8, 1])
+with col_cm_mid:
+    st.image('models/confusion_matrix.png', use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
@@ -149,16 +151,16 @@ with col_arch:
     st.markdown('<div class="dna-card">', unsafe_allow_html=True)
     st.markdown("""
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
-            <span class="material-icons-outlined" style="font-size: 1.2rem; color: #0D9488;">hub</span>
-            <span style="font-weight: 700; font-size: 1.15rem; color: #0F172A;">Model Architecture</span>
+            <span class="material-icons-outlined" style="font-size: 1.4rem; color: #0D9488;">hub</span>
+            <span style="font-weight: 700; font-size: 1.3rem; color: #0F172A;">Model Architecture</span>
         </div>
     """, unsafe_allow_html=True)
     
     # Input layer
     st.markdown("""
         <div style="background: #F8FAFC; border: 1px solid #F1F5F9; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px;">
-            <div style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">INPUT LAYER</div>
-            <div style="font-size: 0.85rem; font-weight: 600; color: #1E293B; margin-top: 4px;">(16 × 1) Feature Vector</div>
+            <div style="font-size: 0.9rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">INPUT LAYER</div>
+            <div style="font-size: 1.0rem; font-weight: 600; color: #1E293B; margin-top: 4px;">(16 × 1) Feature Vector</div>
         </div>
     """, unsafe_allow_html=True)
     
@@ -177,8 +179,8 @@ with col_arch:
         with col:
             st.markdown(f"""
                 <div style="background: #0D9488; border-radius: 12px; padding: 14px; text-align: center;">
-                    <div style="font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.05em;">{name}</div>
-                    <div style="font-size: 0.8rem; font-weight: 600; color: white; margin-top: 2px;">{desc}</div>
+                    <div style="font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.05em;">{name}</div>
+                    <div style="font-size: 1.0rem; font-weight: 600; color: white; margin-top: 2px;">{desc}</div>
                 </div>
             """, unsafe_allow_html=True)
     
@@ -188,8 +190,8 @@ with col_arch:
     # Output layer
     st.markdown("""
         <div style="background: #7C3AED; border-radius: 12px; padding: 16px; text-align: center;">
-            <div style="font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.05em;">SOFTMAX OUTPUT</div>
-            <div style="font-size: 0.85rem; font-weight: 600; color: white; margin-top: 2px;">(8 Career Archetypes)</div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.05em;">SOFTMAX OUTPUT</div>
+            <div style="font-size: 1.05rem; font-weight: 600; color: white; margin-top: 2px;">(8 Career Archetypes)</div>
         </div>
     """, unsafe_allow_html=True)
     
@@ -199,8 +201,8 @@ with col_pipe:
     st.markdown('<div class="dna-card">', unsafe_allow_html=True)
     st.markdown("""
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
-            <span class="material-icons-outlined" style="font-size: 1.2rem; color: #7C3AED;">alt_route</span>
-            <span style="font-weight: 700; font-size: 1.15rem; color: #0F172A;">Data Pipeline</span>
+            <span class="material-icons-outlined" style="font-size: 1.4rem; color: #7C3AED;">alt_route</span>
+            <span style="font-weight: 700; font-size: 1.3rem; color: #0F172A;">Data Pipeline</span>
         </div>
     """, unsafe_allow_html=True)
     
@@ -217,10 +219,10 @@ with col_pipe:
         icon_color = "white" if i == len(pipeline) - 1 else "#64748B"
         st.markdown(f"""
             <div style="display: flex; gap: 1rem; margin-bottom: 2rem; position: relative;">
-                <div style="background: {icon_bg}; color: {icon_color}; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 2; font-size: 0.8rem; font-weight: 700;">{i+1}</div>
+                <div style="background: {icon_bg}; color: {icon_color}; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 2; font-size: 1.0rem; font-weight: 700;">{i+1}</div>
                 <div>
-                    <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A;">{title}</div>
-                    <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 2px;">{desc}</div>
+                    <div style="font-weight: 700; font-size: 1.1rem; color: #0F172A;">{title}</div>
+                    <div style="font-size: 0.95rem; color: #94A3B8; margin-top: 2px;">{desc}</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)

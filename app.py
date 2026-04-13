@@ -13,7 +13,7 @@ with st.sidebar:
 
 # Persistent storage for responses
 if "persistent_responses" not in st.session_state:
-    st.session_state.persistent_responses = {i: 3 for i in range(1, 13)}
+    st.session_state.persistent_responses = {i: None for i in range(1, 13)}
 
 def update_persistent_response(idx):
     st.session_state.persistent_responses[idx] = st.session_state[f"val_{idx}"]
@@ -25,15 +25,15 @@ st.markdown("<p style='font-size: 1.1rem; color: #64748B; max-width: 800px;'>Dis
 st.markdown("<br>", unsafe_allow_html=True)
 
 # Info Cards and Progress
-col_info1, col_info2, col_prog = st.columns([1, 1, 2])
+col_info1, col_info2, col_prog = st.columns([1, 1, 1])
 with col_info1:
     info_box("Takes 2 minutes", "Rapid Response Protocol")
 with col_info2:
     info_box("ML-Driven Engine", "Predictive Trait Mapping")
 with col_prog:
-    answered = sum(1 for v in st.session_state.persistent_responses.values() if v != 3)
+    answered = sum(1 for v in st.session_state.persistent_responses.values() if v is not None)
     progress = answered / 12
-    st.markdown("<div style='margin-left: 2rem;'>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-left: 1rem;'>", unsafe_allow_html=True)
     st.markdown("<p style='font-weight: 800; font-size: 1.25rem; margin-bottom: 0.5rem;'>PROGRESS</p>", unsafe_allow_html=True)
     st.progress(progress)
     st.markdown(f"<p style='font-size: 0.8rem; color: #64748B; margin-top: 0.5rem;'>{answered} / 12 units mapped</p>", unsafe_allow_html=True)
@@ -69,7 +69,7 @@ for idx, question in enumerate(questions, start=1):
             val = st.radio(
                 f"q_{idx}",
                 options=[1, 2, 3, 4, 5],
-                index=st.session_state.persistent_responses[idx] - 1,
+                index=None if st.session_state.persistent_responses[idx] is None else st.session_state.persistent_responses[idx] - 1,
                 key=f"val_{idx}",
                 on_change=update_persistent_response,
                 args=(idx,),
@@ -89,22 +89,15 @@ for idx, question in enumerate(questions, start=1):
                 </div>
             """, unsafe_allow_html=True)
 
-# Navigation Buttons
+# Navigation Button
 st.markdown("<br><br>", unsafe_allow_html=True)
-col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1])
+col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
-with col_btn1:
-    # Using markdown to style this button specifically as a secondary one
-    st.markdown('<div class="secondary-btn">', unsafe_allow_html=True)
-    if st.button("Clear Responses", key="clear", use_container_width=True):
-        for i in range(1, 13):
-            st.session_state.persistent_responses[i] = 3
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with col_btn3:
+with col_btn2:
     if st.button("Get Career Recommendations", type="primary", use_container_width=True):
-        features = questionnaire_to_features(responses)
+        # Fallback to neutral (3) for any skipped questions
+        processed_responses = [r if r is not None else 3 for r in responses]
+        features = questionnaire_to_features(processed_responses)
         
         @st.cache_resource
         def get_predictor():
