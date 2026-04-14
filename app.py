@@ -3,7 +3,7 @@ from src.feature_engineering import questionnaire_to_features
 from src.predict import CareerPredictor
 from src.theme import apply_custom_theme, info_box, dark_footer, sidebar_header, sidebar_nav
 
-st.set_page_config(page_title="🧬 DNA-Level Career Fit", layout="wide")
+st.set_page_config(page_title="🧬 Career Fit Predictor", layout="wide")
 apply_custom_theme()
 
 # Unified Sidebar
@@ -19,7 +19,7 @@ def update_persistent_response(idx):
     st.session_state.persistent_responses[idx] = st.session_state[f"val_{idx}"]
 
 # Header Section
-st.title("DNA-Level Career Fit Predictor")
+st.title("Career Fit Predictor")
 st.markdown("<p style='font-size: 1.1rem; color: #64748B; max-width: 800px;'>Discover careers aligned with your personality and cognitive traits through our advanced neural-mapping assessment.</p>", unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)

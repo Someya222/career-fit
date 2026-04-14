@@ -20,7 +20,9 @@ class CareerPredictor:
         features: numpy array of shape (1, 15)
         returns: dict with prediction results
         """
-        features_scaled = self.scaler.transform(features)
+        # Ensure numpy array and slice to first 5 features (Big Five)
+        features_input = np.array(features)[:, :5]
+        features_scaled = self.scaler.transform(features_input)
         probs = self.model.predict(features_scaled, verbose=0)[0]
         
         archetype_idx = np.argmax(probs)

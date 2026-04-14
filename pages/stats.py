@@ -33,8 +33,8 @@ with col1:
         <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #F1F5F9;">
             <div style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">ACCURACY</div>
             <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 8px;">
-                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">0.892</span>
-                <span style="font-size: 0.75rem; color: #EF4444; font-weight: 600;">-1.4%</span>
+                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">0.925</span>
+                <span style="font-size: 0.75rem; color: #94A3B8; font-weight: 600;">Full Sequence</span>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -44,8 +44,8 @@ with col2:
         <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #F1F5F9;">
             <div style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">F1 SCORE</div>
             <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 8px;">
-                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">0.874</span>
-                <span style="font-size: 0.75rem; color: #10B981; font-weight: 600;">+0.8%</span>
+                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">0.930</span>
+                <span style="font-size: 0.75rem; color: #94A3B8; font-weight: 600;">Weighted Avg</span>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -53,10 +53,10 @@ with col2:
 with col3:
     st.markdown("""
         <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #F1F5F9;">
-            <div style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">MSE</div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">TEST LOSS</div>
             <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 8px;">
-                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">0.121</span>
-                <span style="font-size: 0.75rem; color: #EF4444; font-weight: 600;">-0.003</span>
+                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">0.2015</span>
+                <span style="font-size: 0.75rem; color: #94A3B8; font-weight: 600;">Cross-Entropy</span>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -66,7 +66,7 @@ with col4:
         <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #F1F5F9;">
             <div style="font-size: 0.75rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">DATASET SIZE</div>
             <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 8px;">
-                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">10,000</span>
+                <span style="font-size: 1.8rem; font-weight: 800; color: #0F172A;">1,000</span>
                 <span style="font-size: 0.75rem; color: #94A3B8; font-weight: 600;">Samples</span>
             </div>
         </div>
@@ -88,7 +88,7 @@ with col_loss:
                 <span style="font-weight: 700; font-size: 1.05rem; color: #0F172A;">Loss Curve</span>
             </div>
             <div style="display: flex; gap: 12px;">
-                <span style="font-size: 0.7rem; font-weight: 600; color: #0D9488;">● train_loss: .248</span>
+                <span style="font-size: 0.7rem; font-weight: 600; color: #0D9488;">● test_loss: 0.2015</span>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -107,7 +107,7 @@ with col_acc:
                 <span style="font-weight: 700; font-size: 1.05rem; color: #0F172A;">Accuracy Curve</span>
             </div>
             <div style="display: flex; gap: 12px;">
-                <span style="font-size: 0.7rem; font-weight: 600; color: #7C3AED;">● validation: 0.88</span>
+                <span style="font-size: 0.7rem; font-weight: 600; color: #7C3AED;">● accuracy: 0.925</span>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -160,7 +160,7 @@ with col_arch:
     st.markdown("""
         <div style="background: #F8FAFC; border: 1px solid #F1F5F9; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px;">
             <div style="font-size: 0.9rem; font-weight: 700; color: #94A3B8; letter-spacing: 0.05em;">INPUT LAYER</div>
-            <div style="font-size: 1.0rem; font-weight: 600; color: #1E293B; margin-top: 4px;">(16 × 1) Feature Vector</div>
+            <div style="font-size: 1.0rem; font-weight: 600; color: #1E293B; margin-top: 4px;">(5 × 1) Personality Vector</div>
         </div>
     """, unsafe_allow_html=True)
     
@@ -169,9 +169,9 @@ with col_arch:
     
     # Hidden layers
     layers = [
-        ("DENSE_01", "Relu / 512"),
-        ("DENSE_02", "Relu / 256"),
-        ("DENSE_03", "Dropout 0.3"),
+        ("DENSE_01", "Relu / 64"),
+        ("DENSE_02", "Relu / 32"),
+        ("DROPOUT", "Rate: 0.2"),
     ]
     
     col_l1, col_l2, col_l3 = st.columns(3)
@@ -207,11 +207,11 @@ with col_pipe:
     """, unsafe_allow_html=True)
     
     pipeline = [
-        ("Questionnaire", "Self-reported psychometric data", "#F1F5F9", "#64748B"),
-        ("Feature Engineering", "Dimensionality reduction & PCA", "#F1F5F9", "#64748B"),
-        ("Scaling", "Z-score normalization of metrics", "#F1F5F9", "#64748B"),
-        ("Inference Model", "Neural processing of markers", "#F1F5F9", "#64748B"),
-        ("Career Prediction", "Final probability distribution", "#0D9488", "#FFFFFF"),
+        ("Input", "Big Five Psychometric Scores (0-100 range)", "#F1F5F9", "#64748B"),
+        ("Labeling", "Dynamic Archetype Scoring (Euclidean Distance Mapping)", "#F1F5F9", "#64748B"),
+        ("Scaling", "Z-score Normalization (StandardScaler)", "#F1F5F9", "#64748B"),
+        ("Inference", "Neural Classification (Feed-Forward MLP)", "#F1F5F9", "#64748B"),
+        ("Output", "8-Class Probability Distribution", "#0D9488", "#FFFFFF"),
     ]
     
     for i, (title, desc, bg, text_col) in enumerate(pipeline):

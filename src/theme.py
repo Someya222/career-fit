@@ -257,7 +257,7 @@ def sidebar_header():
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
                 <span style="font-size: 1.5rem;">🧬</span>
                 <div>
-                    <div style="font-weight: 800; font-size: 1.1rem; font-family: Manrope; color: #0F172A;">DNA-Level Career Fit</div>
+                    <div style="font-weight: 800; font-size: 1.1rem; font-family: Manrope; color: #0F172A;">Career Fit</div>
                     <div style="font-weight: 800; font-size: 0.75rem; color: #0D9488; letter-spacing: 0.1em;">PREDICTOR</div>
                 </div>
             </div>
@@ -330,7 +330,7 @@ def dark_footer():
         <div style="background: #0F172A; color: #FFFFFF; padding: 64px; border-radius: 32px; margin-top: 64px;">
             <div style="font-size: 11px; font-weight: 700; color: #94A3B8; letter-spacing: 0.2em; margin-bottom: 24px;">SCIENTIFIC PROTOCOL V.2.4</div>
             <h2 style="color: #FFFFFF !important; font-size: 2rem; margin-bottom: 20px; letter-spacing: -0.02em;">How we calculate your fit.</h2>
-            <p style="color: #94A3B8; max-width: 600px; line-height: 1.8; margin-bottom: 28px; font-size: 15px;">Our algorithm processes your DNA-level cognitive markers against a database of 4,000+ specialized career paths. This is not a simple personality test; it's a structural alignment of neuro-capabilities.</p>
+            <p style="color: #94A3B8; max-width: 600px; line-height: 1.8; margin-bottom: 28px; font-size: 15px;">Our algorithm processes your core cognitive markers against a database of 4,000+ specialized career paths. This is not a simple personality test; it's a structural alignment of neuro-capabilities.</p>
             <a href="#" style="color: #FFFFFF; text-decoration: underline; font-weight: 700; font-size: 0.9rem;">Review the methodology &rarr;</a>
         </div>
     """, unsafe_allow_html=True)
